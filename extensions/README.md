@@ -1,6 +1,6 @@
 # 百度MIP扩展组件开发手册（不依赖编译版）
 
-## >、开发之前
+## 一、开发之前
 
 ### 1、代码规范
 
@@ -12,20 +12,34 @@ CSS
 
 [CSS 规范](https://github.com/ecomfe/spec/blob/master/css-style-guide.md)
 
-需通过规范检查：
+组件代码需通过规范检查：
 
 [fecs](http://fecs.baidu.com/)
 
-### 2、github 新建 [ISSUE](https://github.com/mipengine/mip-plugins/issues)，申请自定义 html 标签名
+### 2、github 新建 [ISSUE](https://github.com/mipengine/mip-plugins/issues)
+    
+    1）、确认需求
+
+    2）、申请自定义 html 标签名
 
 
-## >、怎么开发
+## 二、怎么开发
 
-	1、在页面头部引入 css：<link rel="stylesheet" type="text/css" href="https://mipcache.bdstatic.com/static/mipmain-v0.0.1.css">
+	1、在页面头部引入 css：
 
-	2、在 body 最后引入 js：<script src="https://mipcache.bdstatic.com/static/mipmain-v0.1.1.js"></script> todo 待上线
+```
+    <link rel="stylesheet" type="text/css" href="https://mipcache.bdstatic.com/static/mipmain-v0.0.1.css">
+```
 
-	3、在2的 js 后面外链或内联你的组件 js，若页面依赖多个组件，依次引入组件 js，写法参照 组件 js 构成介绍。
+	2、在 body 最后引入 js：
+
+```
+    <script src="https://mipcache.bdstatic.com/static/mipmain-v0.1.1.js"></script>
+```
+
+	3、在2的 js 后面外链或内联你的组件 js，若页面依赖多个组件，依次引入组件 js，写法参照 `组件 js 构成介绍`。
+
+    注：<strong>1、2均需参考[官网](https://www.mipengine.org/)的最新版本</strong>
 
 ### 组件的生命周期
     
@@ -43,7 +57,7 @@ CSS
       ↓    
     detached               # 从文档中移除
 
-    注：具体使用，请参照 demo ——> 组件 js 构成介绍
+    注：具体使用，请参照 demo ——> `组件 js 构成介绍`
 
 ### 组件 js 构成介绍
 
@@ -99,7 +113,7 @@ require(['mip-demoforall/* 你的组件名称，需要更改4 */'], function (de
 });
 ```
 
-## >、怎么测试
+## 三、怎么测试
 	
 	本地测试，直接静态的 html 文件用浏览器打开即可
 
@@ -121,7 +135,7 @@ require(['mip-demoforall/* 你的组件名称，需要更改4 */'], function (de
         * Android 4.0~5.1
     ```
 
-## >、测试 OK 了之后需要做什么？
+## 四、测试 OK 了之后需要做什么？
 
 1、书写详细的组件功能说明文档
 	
@@ -150,7 +164,7 @@ require(['mip-demoforall/* 你的组件名称，需要更改4 */'], function (de
 
 
 
-## >、完整 demo 示例
+## 五、完整 demo 示例
 
 ```
 <!DOCTYPE html>
