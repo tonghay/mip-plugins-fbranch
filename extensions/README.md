@@ -62,7 +62,7 @@ CSS
 ### 组件 js 构成介绍
 
 ```
-define('mip-demoforall/* 你的组件名称，需要更改1 */', ['require', 'customElement'], function(require) {
+define('mip-plugindemo/* 你的组件名称，需要更改1 */', ['require', 'customElement'], function(require) {
 
     var customElem = require('customElement');
 
@@ -105,11 +105,11 @@ define('mip-demoforall/* 你的组件名称，需要更改1 */', ['require', 'cu
 
     return customElem;
 });
-require(['mip-demoforall/* 你的组件名称，需要更改4 */'], function (demoforall) {
-	//若组件需要有 css,自测时先用字符串，提交过来需要使用 __inline('./组件名称.less'),一个 less 文件
-	MIP.css.mipDemoforall = ".mip-demo-f13 {font-size: 13px;}";
+require(['mip-plugindemo/* 你的组件名称，需要更改4 */'], function (plugindemo) {
+	//若组件需要有 css,自测时先用字符串，提交过来需要使用 __inline('./组件名称.css'),一个 css 文件
+	MIP.css.mipplugindemo = ".mip-demo-f13 {font-size: 13px;}";
     //注册组件,若有 css 才加第三个参数，否则不要第三个参数
-    MIP.registerMipElement('mip-demoforall/* 你的自定义 html 标签名，一般同组件名，需要更改5 */', demoforall, MIP.css.mipDemoforall/*  css  string，需要更改6 */');
+    MIP.registerMipElement('mip-plugindemo/* 你的自定义 html 标签名，一般同组件名，需要更改5 */', plugindemo, MIP.css.mipplugindemo/*  css  string，需要更改6 */');
 });
 ```
 
