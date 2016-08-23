@@ -152,7 +152,7 @@ require(['mip-demoforall/* 你的组件名称，需要更改4 */'], function (de
 [参考文档](https://github.com/oldratlee/translations/blob/master/git-workflows-and-tutorials/workflow-forking.md)
 
 
- ### 线下方式 qq
+### 线下方式 qq
 	
 	1、申请 MIP qq 号值周同学(3020128386)进行代码的 codereview
 
