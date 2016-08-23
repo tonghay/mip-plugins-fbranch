@@ -145,11 +145,10 @@ require(['mip-demoforall/* 你的组件名称，需要更改4 */'], function (de
 
 ### 线上github 方式
 
-采用Forking工作流
+采用Forking工作流:[参考文档](https://github.com/oldratlee/translations/blob/master/git-workflows-and-tutorials/workflow-forking.md)
 
 [github 地址](https://github.com/mipengine/mip-plugins)
 
-[参考文档](https://github.com/oldratlee/translations/blob/master/git-workflows-and-tutorials/workflow-forking.md)
 
 
 ### 线下方式 qq
@@ -166,6 +165,8 @@ require(['mip-demoforall/* 你的组件名称，需要更改4 */'], function (de
 
 ## 五、完整 demo 示例
 
+注：js/css 版本参考[官网](https://www.mipengine.org/)的最新版本
+
 ```
 <!DOCTYPE html>
 <html mip>
@@ -179,7 +180,7 @@ require(['mip-demoforall/* 你的组件名称，需要更改4 */'], function (de
     <mip-img src="http://a.hiphotos.baidu.com/image/h%3D200/sign=8aa71c7ce3c4b7452b94b016fffd1e78/3c6d55fbb2fb4316edd0e02f28a4462308f7d39c.jpg" popup alt="banner a" width="414" height="207" layout="responsive">
         <p>banner a</p>
     </mip-img>
-    <mip-carousel autoplay defer="2000" width="414" height="207">
+    <mip-carousel autoplay defer="2000" width="414" height="257" layout="fixed-height">
         <div>
             <mip-img src="http://a.hiphotos.baidu.com/image/h%3D200/sign=8aa71c7ce3c4b7452b94b016fffd1e78/3c6d55fbb2fb4316edd0e02f28a4462308f7d39c.jpg" popup alt="banner a" width="414" height="207" layout="responsive">
             </mip-img>
