@@ -1,25 +1,25 @@
 # 百度MIP扩展组件开发手册（不依赖编译版）
 
-## 开发之前
+## >、开发之前
 
 ### 1、代码规范
 
 JS
 
-https://github.com/ecomfe/spec/blob/master/javascript-style-guide.md
+[JS 规范](https://github.com/ecomfe/spec/blob/master/javascript-style-guide.md)
 
 CSS
 
-https://github.com/ecomfe/spec/blob/master/css-style-guide.md
+[CSS 规范](https://github.com/ecomfe/spec/blob/master/css-style-guide.md)
 
 需通过规范检查：
 
-http://fecs.baidu.com/
+[fecs](http://fecs.baidu.com/)
 
-### 2、github 新建 ISSUE，申请自定义 html 标签名
+### 2、github 新建 [ISSUE](https://github.com/mipengine/mip-plugins/issues)，申请自定义 html 标签名
 
 
-## 怎么开发
+## >、怎么开发
 
 	1、在页面头部引入 css：<link rel="stylesheet" type="text/css" href="https://mipcache.bdstatic.com/static/mipmain-v0.0.1.css">
 
@@ -27,31 +27,67 @@ http://fecs.baidu.com/
 
 	3、在2的 js 后面外链或内联你的组件 js，若页面依赖多个组件，依次引入组件 js，写法参照 组件 js 构成介绍。
 
-### 组件 js 构成介绍(需要按照最新的改一下)
+### 组件的生命周期
+    
+    MIP element 生命周期
+
+    init                   # 初始化  
+      ↓  
+    create                 # 创建元素  
+      ↓  
+    attached               # 插入到文档中  
+      ↓   
+    build                  # 执行build，只会被执行一次   
+      ↓     
+    viewport(in or out)    # 进入或离开可视区域   
+      ↓    
+    detached               # 从文档中移除
+
+    注：具体使用，请参照 demo ——> 组件 js 构成介绍
+
+### 组件 js 构成介绍
 
 ```
 define('mip-demoforall/* 你的组件名称，需要更改1 */', ['require', 'customElement'], function(require) {
 
     var customElem = require('customElement');
 
-    customElem.prototype.init = function() {
-
-        this.build = render;
-        /* 按生命周期自定义，生命周期参考组件的生命周期，需要更改2 */
-
+    /* 生命周期 function list，根据组件情况选用，（一般情况选用 build、inviewCallback） start */
+    // build 方法，元素插入到文档时执行，仅会执行一次
+    customElem.prototype.build = function () {
+        // this.element 可取到当前实例对应的 dom 元素
+        var element = this.element;
+        element._index = index ++;
     };
 
-    /* 自定义的 js 功能函数 start 需要更改3 */
-    function render() {
-        if (this.isRender) {
-            return; 
-        }
-		this.isRender = true;
-        /* 前四行保留，防止组件的 render 函数多次调用 */
-
-        console.log('test');
-    }
-    /*自定义的 js 功能函数 end*/
+    // 创建元素回调
+    customElem.prototype.createdCallback = function () {
+        console.log('created');
+    };
+    // 向文档中插入节点回调
+    customElem.prototype.attachedCallback = function () {
+        console.log('attached');
+    };
+    // 从文档中移出节点回调
+    customElem.prototype.detachedCallback = function () {
+        console.log('detached');
+    };
+    // 第一次进入可视区回调,只会执行一次，做懒加载，利于网页速度
+    customElem.prototype.inviewCallback = function () {
+        console.log('first in viewport');
+    };
+    // 进入或离开可视区回调，每次状态变化都会执行
+    customElem.prototype.viewportCallback = function (isInView) {
+        // true 进入可视区;false 离开可视区
+        console.log(isInView);
+    };
+    // 控制inviewCallback是否提前执行
+    // 轮播图片等可使用此方法提前渲染
+    customElem.prototype.prerenderAllowed = function () {
+        // 判断条件，可自定义。返回值为true时,inviewCallback会在元素build后执行
+        return !!this.isCarouselImg;
+    };
+    /* 生命周期 function list，根据组件情况选用 end */
 
     return customElem;
 });
@@ -63,18 +99,29 @@ require(['mip-demoforall/* 你的组件名称，需要更改4 */'], function (de
 });
 ```
 
-### 组件的生命周期
-	
-	待补充
-
-
-## 怎么测试
+## >、怎么测试
 	
 	本地测试，直接静态的 html 文件用浏览器打开即可
 
-	测试覆盖范围  待补充
+	测试覆盖范围
 
-## 测试 OK 了之后需要做什么？
+    ```
+        一、覆盖浏览器
+        * 百度框（夜间模式下样式正常）
+        * 百度浏览器
+        * 原生浏览器/Safari
+        * UC浏览器
+        * QQ浏览器
+        * chrome浏览器
+        * 微信（带有"分享"功能的项目及运营项目必测）
+
+        二、覆盖操作系统
+        * ios6~9
+        * Android 2.3
+        * Android 4.0~5.1
+    ```
+
+## >、测试 OK 了之后需要做什么？
 
 1、书写详细的组件功能说明文档
 	
@@ -83,34 +130,17 @@ require(['mip-demoforall/* 你的组件名称，需要更改4 */'], function (de
 2、代码提交
 
 ### 线上github 方式
-	
-```
 
-第一步，建分支，删本地
- git checkout -b myfeature;
- git push origin myfeature;
- git checkout master;
- git branch -d myfeature;
+采用Forking工作流
 
-第二步，拉分支，做开发
- git checkout -b dperf origin/dperf;
- git add xxx; git commit -m 'dev xxx';
- git push origin dperf;
+[github 地址](https://github.com/mipengine/mip-plugins)
 
-代码push到origin服务器后，可以去网页上发起Merge Request
+[参考文档](https://github.com/oldratlee/translations/blob/master/git-workflows-and-tutorials/workflow-forking.md)
 
-第三步, 合并分支
- git checkout master;
- git pull;
- git checkout dperf;
- git fetch origin master;
- git rebase master;
-
- ```
 
  ### 线下方式 qq
 	
-	1、申请 MIP qq 号值周同学进行代码的 codereview
+	1、申请 MIP qq 号值周同学(3020128386)进行代码的 codereview
 
 	2、cr 完成后，代码发送给值周同学
 
@@ -120,7 +150,7 @@ require(['mip-demoforall/* 你的组件名称，需要更改4 */'], function (de
 
 
 
-## 完整 demo 示例
+## >、完整 demo 示例
 
 ```
 <!DOCTYPE html>
@@ -154,44 +184,7 @@ require(['mip-demoforall/* 你的组件名称，需要更改4 */'], function (de
     <script src="https://mipcache.bdstatic.com/static/mipmain-v0.0.1.js"></script>
     <script src="https://mipcache.bdstatic.com/static/v0.1/mip-link.js"></script>
     <script src="https://mipcache.bdstatic.com/static/v0.1/mip-stats-bidu.js"></script>
-    <script>
-        
-        /**
-        * demo for 所有 mip 组件开发者
-        * @exports modulename
-        * @author lilangbo@baidu.com
-        * @version 1.0
-        * @copyright 2016 Baidu.com, Inc. All Rights Reserved
-        */
-
-        define('mip-demoforall', ['require', 'customElement'], function(require) {
-
-            var customElem = require('customElement');
-
-            customElem.prototype.init = function() {
-
-                this.build = render;
-
-            };
-
-            function render() {
-                if (this.isRender) {
-                    return; 
-                }
-
-                this.isRender = true;
-                
-                console.log('test');
-            }
-
-            return customElem;
-        });
-        require(['mip-demoforall'], function (demoforall) {
-            //注册组件
-            MIP.registerMipElement('mip-demoforall', demoforall);
-        });
-
-    </script>
+    <script src="/*你的组件 js 地址*/"></script>
 </html>
 
 ```
