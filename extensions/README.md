@@ -27,13 +27,13 @@ CSS
 
 	1、在页面头部引入 css：
 
-```
+```html
     <link rel="stylesheet" type="text/css" href="https://mipcache.bdstatic.com/static/mipmain-v0.0.1.css">
 ```
 
 	2、在 body 最后引入 js：
 
-```
+```html
     <script src="https://mipcache.bdstatic.com/static/mipmain-v0.1.1.js"></script>
 ```
 
@@ -61,10 +61,10 @@ CSS
 
 ### 组件 js 构成介绍
 
-```
+```javascript
 define('mip-plugindemo/* 你的组件名称，需要更改1 */', ['require', 'customElement'], function(require) {
 
-    var customElem = require('customElement');
+    var customElem = require('customElement').create();
 
     /* 生命周期 function list，根据组件情况选用，（一般情况选用 build、inviewCallback） start */
     // build 方法，元素插入到文档时执行，仅会执行一次
@@ -141,7 +141,9 @@ require(['mip-plugindemo/* 你的组件名称，需要更改4 */'], function (pl
 	
 	参照：https://www.mipengine.org/doc.html#../docs/4-widget/4-customize-widget/appdl-widget.md
 
-2、代码提交
+2、测试的 demo 需放在 github 的 examples 目录下，命名: 组件名-mip.html
+
+3、代码提交
 
 ### 线上github 方式
 
@@ -167,7 +169,7 @@ require(['mip-plugindemo/* 你的组件名称，需要更改4 */'], function (pl
 
 注：js/css 版本参考[官网](https://www.mipengine.org/)的最新版本
 
-```
+```html
 <!DOCTYPE html>
 <html mip>
     <head>
