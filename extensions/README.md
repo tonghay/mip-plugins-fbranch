@@ -145,21 +145,14 @@ require(['mip-plugindemo/* 你的组件名称，需要更改4 */'], function (pl
 
 3、代码提交
 
-### 线上github 方式
+### github 方式
 
 采用Forking工作流:[参考文档](https://github.com/oldratlee/translations/blob/master/git-workflows-and-tutorials/workflow-forking.md)
 
 [github 地址](https://github.com/mipengine/mip-plugins)
 
 
-
-### 线下方式 qq
-	
-	1、申请代码审核，请联系值周同学(qq号：3020128386)
-
-	2、代码审核完成后，代码发送给值周同学
-
-3、上线
+4、上线
 	
 	目前每周二、四上线两次，统一下午三点上线，下午二点需要代码 ready，超过时间等下次上线窗口
 
