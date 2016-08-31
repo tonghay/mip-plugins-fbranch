@@ -28,13 +28,13 @@ CSS
 	1、在页面头部引入 css：
 
 ```html
-    <link rel="stylesheet" type="text/css" href="https://mipcache.bdstatic.com/static/mipmain-v0.0.1.css">
+    <link rel="stylesheet" type="text/css" href="https://mipcache.bdstatic.com/static/mipmain-v1.0.1.css">
 ```
 
 	2、在 body 最后引入 js：
 
 ```html
-    <script src="https://mipcache.bdstatic.com/static/mipmain-v0.1.1.js"></script>
+    <script src="https://mipcache.bdstatic.com/static/mipmain-v1.0.2.js"></script>
 ```
 
 	3、在2的 js 后面外链或内联你的组件 js，若页面依赖多个组件，依次引入组件 js，写法参照 `组件 js 构成介绍`。
@@ -171,7 +171,7 @@ require(['mip-plugindemo/* 你的组件名称，需要更改4 */'], function (pl
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
         <title>文章大标题</title>
-        <link rel="stylesheet" type="text/css" href="https://mipcache.bdstatic.com/static/mipmain-v0.0.1.css">
+        <link rel="stylesheet" type="text/css" href="https://mipcache.bdstatic.com/static/mipmain-v1.0.1.css">
     </head>
     <body>
     <mip-img src="http://a.hiphotos.baidu.com/image/h%3D200/sign=8aa71c7ce3c4b7452b94b016fffd1e78/3c6d55fbb2fb4316edd0e02f28a4462308f7d39c.jpg" popup alt="banner a" width="414" height="207" layout="responsive">
@@ -193,7 +193,7 @@ require(['mip-plugindemo/* 你的组件名称，需要更改4 */'], function (pl
 
 
     </body>
-    <script src="https://mipcache.bdstatic.com/static/mipmain-v0.0.1.js"></script>
+    <script src="https://mipcache.bdstatic.com/static/mipmain-v1.0.2.js"></script>
     <script src="https://mipcache.bdstatic.com/static/v0.1/mip-link.js"></script>
     <script src="https://mipcache.bdstatic.com/static/v0.1/mip-stats-bidu.js"></script>
     <script src="/*你的组件 js 地址*/"></script>
