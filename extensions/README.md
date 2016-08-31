@@ -62,8 +62,10 @@ CSS
 ### 组件 js 构成介绍
 
 ```javascript
-define('mip-plugindemo/* 你的组件名称，需要更改1 */', ['require', 'customElement'], function(require) {
-
+define('mip-plugindemo/* 你的组件名称，需要更改1 */', ['require', 'customElement', 'zepto'], function(require) {
+    // mip 组件开发支持 zepto
+    var $ = require('zepto');
+    
     var customElem = require('customElement').create();
 
     /* 生命周期 function list，根据组件情况选用，（一般情况选用 build、inviewCallback） start */
