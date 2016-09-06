@@ -12,34 +12,37 @@ define('mip-fh-ad', ['require', 'customElement', 'zepto'], function (require) {
 
     var customElem = require('customElement').create();
 
-    var ajaxurl = 'https://partners.fh21.com.cn/partners/showcodejsonp?callback=?';
+    //直投广告请求url
+    var ajaxurl = 'http://partners.fh21.com.cn/partners/showcodejsonp?callback=?';
 
+    //页面广告参数
     var param = $('#adParam');
     var paramObj = param.data('keyword');
-    var hostStatic = param.data('host-static');
+    //广告位id数组
     var pid = [1, 11, 14, 47, 48, 49];
     var consoleStr = {
             kw: paramObj,
             pid: pid.join(',')
         };
 
-    window.HOST = {
-        STATIC: hostStatic
-    };
+    // window.HOST = {
+    //     STATIC: hostStatic
+    // };
 
+    //初始化直投广告
     var init = function () {
-
+        //判断直投广告参数,是否加载直投广告请求
         if (paramObj && paramObj.length) {
             $.getJSON(ajaxurl, consoleStr, function (json) {
-                // console.log(json);
                 var adObj = $.parseJSON(json.result);
-                // console.log(adObj);
 
+                //遍历直投广告ID
                 $.each(adObj, function (k, v) {
                     if ($.trim(v)) {
                         $('[id^=BAIDU_DUP_wrapper]').remove();
                         // 根据广告id，判断广告的显示位置
                         switch (+k) {
+                            //底部悬浮广告
                             case 1:
                                 $('body').append('<div id="ad_position_1">' + v + '</div>');
                                 // 去除三种广告：顶部网盟嵌入，右上漂浮：猪，右下漂浮：图片
@@ -62,14 +65,14 @@ define('mip-fh-ad', ['require', 'customElement', 'zepto'], function (require) {
                                 $('div.introduce-list').append(v);
                                 break;
                             // 我要提问下方热图广告位
-                            case 49:
-                                $('#ad-s-1255').prepend(v);
-                                break;
+                            // case 49:
+                            //     $('#ad-s-1255').prepend(v);
+                            //     break;
                         }
                     } else {
                         // 广告位id为1时，加载底部漂浮的百度广告
                         if (+k === 1) {
-                            loadBdAd();
+                            // loadBdAd();
                         }
                     }
                 });
@@ -90,5 +93,6 @@ define('mip-fh-ad', ['require', 'customElement', 'zepto'], function (require) {
 });
 
 require(['mip-fh-ad'], function (plugindemo) {
+    //注册mip-fh-ad组件
     MIP.registerMipElement('mip-fh-ad', plugindemo);
 });
