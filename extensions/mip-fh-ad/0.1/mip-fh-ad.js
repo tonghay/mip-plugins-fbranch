@@ -12,34 +12,7 @@ define('mip-fh-ad', ['require', 'customElement', 'zepto'], function (require) {
 
     var customElem = require('customElement').create();
 
-
-    var loadJSFile = function (url, callback) {
-        // Adding the script tag to the head as suggested before
-        var head = document.getElementsByTagName('head')[0];
-        var script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = url;
-
-        // Then bind the event to the callback function.
-        // There are several events for cross browser compatibility.
-        script.onreadystatechange = callback;
-        script.onload = callback;
-
-        // Fire the loading
-        head.appendChild(script);
-    };
-    // load btm baidu ad
-    var loadBdAd = function () {
-        window.cpro_psid = 'u2355234';
-        window.cpro_psdata = {
-            staticDomain: 'bdimg.fh21.com.cn'
-        };
-        loadJSFile('http://bdimg.fh21.com.cn/static/dspui/js/umf.js', function () {
-            // console.log('loaded js file');
-        });
-    };
-
-    var ajaxurl = 'http://partners.fh21.com.cn/partners/showcodejsonp?callback=?';
+    var ajaxurl = 'https://partners.fh21.com.cn/partners/showcodejsonp?callback=?';
 
     var param = $('#adParam');
     var paramObj = param.data('keyword');
