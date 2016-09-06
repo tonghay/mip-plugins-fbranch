@@ -1,6 +1,6 @@
 # mip-fh-ad 
 
-mip-fh-ad 用来支持m.fh21.com.cn问答详情页的直接广告显示
+mip-fh-ad 用来支持m.fh21.com.cn问答详情页的直投广告显示
 
 | 描述 | 提供了一个mip中app的下载容器.|
 |---|---|
