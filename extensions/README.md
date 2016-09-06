@@ -141,7 +141,7 @@ require(['mip-plugindemo/* 你的组件名称，需要更改4 */'], function (pl
 
 1、书写详细的组件功能说明文档
 	
-	参照：https://www.mipengine.org/doc.html#../docs/4-widget/4-customize-widget/appdl-widget.md
+	参照：https://www.mipengine.org/doc/4-widget/4-customize-widget/appdl-widget.html
 
 2、测试的 demo 需放在 github 的 examples 目录下，命名: 组件名-mip.html
 
